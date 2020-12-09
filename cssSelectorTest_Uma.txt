@@ -1,0 +1,43 @@
+public class cssSelectorTest{
+public void accessWebPageElement(){
+
+System.setProperty("webdriver.chrome.driver","C:\Users\612491814\Documents\ChromeDriver\chromedriver.exe");
+WebDriver driverObj = new ChromeDriver();
+driverObj.navigate().to("https://translate.google.com/translate?sl=auto&tl=en&u=https://prefeitura.pbh.gov.br/saude/licitacao/pregao-eletronico-151-2020");
+
+//Find and Retrieve value of "Publication Date" from webpage
+WebElement PublicationDate = driverObj.findElement(By.cssSelector("#block-views-block-view-noticia-pbh-block-5 > div > div > div > div > div > div.views-field.views-field-nothing > span > span:nth-child(1) > font > font > font > font"));
+String PublicationDateVal = PublicationDate.getText();
+//Print Extracted Publication Date values
+System.out.println("Publication Date is"+PublicationDateVal);
+
+
+//Find and Retrieve value of "Bidding Date" from webpage
+WebElement BiddingDate = driverObj.findElement(By.cssSelector("#block-views-block-view-noticia-pbh-block-5 > div > div > div > div > div > div.views-field.views-field-nothing > span > p:nth-child(6) > font > font > font > font"));
+String BiddingDateVal = BiddingDate.getText();
+//Print retrieved Bidding Date values
+System.out.println("Bidding Date is"+BiddingDateVal);
+
+
+//Find and Retrieve value of "Object" from webpage
+WebElement ObjectAttr= driverObj.findElement(By.cssSelector("#block-views-block-view-noticia-pbh-block-5 > div > div > div > div > div > div.views-field.views-field-nothing > span > span:nth-child(19) > font > font > font > font"));
+String ObjectVal = ObjectAttr.getText();
+//Print retrieved Object values
+System.out.println("Value of Object is"+ObjectVal);
+
+//Find All links related to this particular tender 
+List<WebElement> findLink = driverObj.findElement(By.tagName("a"));
+
+List<String> listOfLinks = new ArrayList<String>();
+for(WebElement webE : findLink){
+String linkNames = webE.getText();
+listOfLinks.add(linkNames);
+}
+System.out.println("All links related to this particular tender page is"+listOfLinks);
+
+int totalLinks = findLink.size();
+System.out.println("Total numner of links is"+totalLinks);
+
+driverObj.quit();
+                              }
+                         }
